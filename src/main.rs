@@ -58,7 +58,7 @@ fn update_exif_data(conn: &Connection) -> Result<()> {
 fn main() -> Result<()> {
     let conn = db::init_db()?;
 
-    update_exif_data(&conn)?;
+    // update_exif_data(&conn)?;
 
     let all_pdfs = db::get_all(&conn)?;
 
