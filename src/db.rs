@@ -2,7 +2,6 @@ use rusqlite::{params, Connection, OpenFlags, Result, Row};
 
 #[derive(Debug)]
 pub struct PDF {
-	pub id: i32,
 	pub company: String,
 	pub filename: String,
 	pub producer: Option<String>,
@@ -29,7 +28,6 @@ macro_rules! res_to_opt {
 impl PDF {
     fn make_from_row(row: &Row) -> Result<PDF> {
         Ok(PDF {
-            id: row.get(0)?,
             company: row.get(1)?,
             filename: row.get(2)?,
             producer: res_to_opt![row, 3],

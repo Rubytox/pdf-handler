@@ -8,7 +8,6 @@ mod exif;
 
 fn insert_db(conn: &Connection, meta: exif::Metadata, company: &str) -> Result<usize> {
     let pdf = db::PDF {
-        id: -1,  // It is assigned by the database
         company: company.into(),
         filename: meta.filename,
         producer: meta.producer,
