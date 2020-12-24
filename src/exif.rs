@@ -11,9 +11,15 @@ use std::collections::HashSet;
 use regex::Regex;
 
 #[derive(Hash, Eq, PartialEq, Debug, Clone, Copy)]
-struct Version {
+pub struct Version {
     primary: u64,
     secondary: u64,
+}
+
+impl Version {
+    pub fn as_str(&self) -> String {
+        format!("{}.{}", self.primary, self.secondary)
+    }
 }
 
 impl Display for Version {
@@ -23,20 +29,20 @@ impl Display for Version {
 }
 
 #[derive(Debug)]
-struct Metadata {
-    filename: String,
-    producer: Option<String>,
-    creator: Option<String>,
-    author: Option<String>,
-    creator_tool: Option<String>,
-    pdf_version: Version,
-    title: Option<String>,
-    xmp_toolkit: Option<String>,
-    create_date: Option<String>,
-    modify_date: Option<String>,
+pub struct Metadata {
+    pub filename: String,
+    pub producer: Option<String>,
+	pub creator: Option<String>,
+	pub author: Option<String>,
+	pub creator_tool: Option<String>,
+	pub pdf_version: Version,
+	pub title: Option<String>,
+	pub xmp_toolkit: Option<String>,
+	pub create_date: Option<String>,
+	pub modify_date: Option<String>,
 }
 
-fn get_os(meta: &Metadata) -> Option<String> {
+pub fn get_os(meta: &Metadata) -> Option<String> {
     // First we check on producer
     if let Some(producer) = &meta.producer {
         let re = Regex::new(r".*\((.*)\).*").unwrap();
@@ -79,7 +85,7 @@ fn update_metadata(meta: &mut Metadata, line: String) {
     }
 }
 
-fn read_metadata(filename: &str, child: &mut Child) -> Option<Metadata> {
+pub fn read_metadata(filename: &str, child: &mut Child) -> Option<Metadata> {
     if let Some(ref mut stdout) = child.stdout {
         let lines = BufReader::new(stdout).lines().enumerate();
 

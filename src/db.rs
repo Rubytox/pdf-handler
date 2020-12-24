@@ -2,18 +2,18 @@ use rusqlite::{params, Connection, OpenFlags, Result, Row};
 
 #[derive(Debug)]
 pub struct PDF {
-    id: i32,
-    company: String,
-    filename: String,
-    producer: Option<String>,
-    creator: Option<String>,
-    author: Option<String>,
-    creator_tool: Option<String>,
-    pdf_version: String,
-    title: Option<String>,
-    xmp_toolkit: Option<String>,
-    create_date: Option<String>,
-    modify_date: Option<String>,
+	pub id: i32,
+	pub company: String,
+	pub filename: String,
+	pub producer: Option<String>,
+	pub creator: Option<String>,
+	pub author: Option<String>,
+	pub creator_tool: Option<String>,
+	pub pdf_version: String,
+	pub title: Option<String>,
+	pub xmp_toolkit: Option<String>,
+	pub create_date: Option<String>,
+	pub modify_date: Option<String>,
 }
 
 macro_rules! res_to_opt {
